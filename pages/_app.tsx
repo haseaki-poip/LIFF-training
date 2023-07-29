@@ -18,6 +18,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           .init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID! })
           .then(() => {
             console.log("LIFF init succeeded.");
+            if (!liff.isLoggedIn()) {
+              liff.login({
+                redirectUri:
+                  "https://34db-2001-3b0-22-506b-4d0-476d-ec17-a2d3.ngrok-free.app/profile",
+              });
+            }
             setLiffObject(liff);
           })
           .catch((error: Error) => {
