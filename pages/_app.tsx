@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               liff.login({
                 redirectUri:
                   // 絶対パスで指定しないとurlの認証で弾かれる
-                  "https://b5f4-2001-3b0-22-506b-4d0-476d-ec17-a2d3.ngrok-free.app/profile",
+                  `${process.env.NEXT_PUBLIC_FRONT_ENDPOINT}/profile`,
               });
             }
             setLiffObject(liff);
