@@ -21,7 +21,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             if (!liff.isLoggedIn()) {
               liff.login({
                 redirectUri:
-                  "https://34db-2001-3b0-22-506b-4d0-476d-ec17-a2d3.ngrok-free.app/profile",
+                  // 絶対パスで指定しないとurlの認証で弾かれる
+                  "https://b5f4-2001-3b0-22-506b-4d0-476d-ec17-a2d3.ngrok-free.app/profile",
               });
             }
             setLiffObject(liff);
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // to page component as property
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
+  pageProps.setLiffObject = setLiffObject;
   return <Component {...pageProps} />;
 }
 

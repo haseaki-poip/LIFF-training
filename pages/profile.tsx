@@ -1,10 +1,17 @@
 import { Liff } from "@line/liff/exports";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-type Props = { liff: Liff | null; liffError: string | null };
+type Props = {
+  liff: Liff | null;
+  liffError: string | null;
+  setLiffObject: (liff: Liff | null) => void;
+};
 
-const Profile = ({ liff, liffError }: Props) => {
+const Profile = ({ liff, liffError, setLiffObject }: Props) => {
   const [name, setName] = useState("");
+  const router = useRouter();
+
   useEffect(() => {
     if (!liff) return;
     liff
@@ -22,6 +29,8 @@ const Profile = ({ liff, liffError }: Props) => {
     if (!liff) return;
     if (liff.isLoggedIn()) {
       liff.logout();
+      setLiffObject(null);
+      window.location.reload();
     }
   };
 
